@@ -261,6 +261,7 @@ Set in Docker Compose environment or export before running scripts locally.
 - **Train:** 100 engines, 20,631 rows
 - **Test:** 100 engines, 13,096 rows
 - **RUL target:** Piecewise linear, capped at 125 cycles (Heimes 2008)
+- **Other work:** [Research Paper on same topic, different outcomes/graphs](https://www.mdpi.com/2076-3417/15/18/9945)
 
 ---
 
