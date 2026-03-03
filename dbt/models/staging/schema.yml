@@ -1,0 +1,37 @@
+version: 2
+
+sources:
+  - name: warehouse
+    database: warehouse_db
+    schema: public
+    tables:
+      - name: raw_sensor_readings
+        description: "Raw sensor readings ingested from CMAPSS txt files."
+        columns:
+          - name: engine_id
+            tests:
+              - not_null
+          - name: cycle
+            tests:
+              - not_null
+          - name: dataset_split
+            tests:
+              - not_null
+              - accepted_values:
+                  values: ["train", "test"]
+
+models:
+  - name: stg_sensor_readings
+    description: "Cleaned view of raw sensor readings with informative sensors only."
+    columns:
+      - name: engine_id
+        tests:
+          - not_null
+      - name: cycle
+        tests:
+          - not_null
+      - name: dataset_split
+        tests:
+          - not_null
+          - accepted_values:
+              values: ["train", "test"]

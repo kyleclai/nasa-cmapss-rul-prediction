@@ -1,0 +1,42 @@
+version: 2
+
+models:
+  - name: features_engine_cycle
+    description: >
+      Final feature mart with raw + rolling window + delta features for
+      14 informative sensors. One row per (engine_id, cycle, dataset_split).
+    columns:
+      - name: engine_id
+        tests:
+          - not_null
+      - name: cycle
+        tests:
+          - not_null
+      - name: dataset_split
+        tests:
+          - not_null
+          - accepted_values:
+              values: ["train", "test"]
+      - name: s2
+        tests:
+          - not_null
+
+  - name: labels_rul
+    description: >
+      RUL labels with piecewise linear capping at 125 cycles.
+      One row per (engine_id, cycle, dataset_split).
+    columns:
+      - name: engine_id
+        tests:
+          - not_null
+      - name: cycle
+        tests:
+          - not_null
+      - name: true_rul
+        tests:
+          - not_null
+      - name: failure_flag
+        tests:
+          - not_null
+          - accepted_values:
+              values: [0, 1]
